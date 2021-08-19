@@ -1,28 +1,80 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div id="App">
+    <h1>Lista de actividades</h1>
+    <input
+      type="text"
+      required
+      v-model="ActividadNueva"
+      placeholder="Ingrese nueva actividad c:"
+    />
+    <button @click="AgregarALista">Agregar!</button>
+    <componente
+      :Tareas="Tareas"
+      @EliminardeLista="EliminardeLista"
+    ></componente>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import componente from "./components/component.vue";
 
 export default {
   name: "App",
-  components: {
-    HelloWorld,
+  components: { componente },
+  data: () => ({
+    ActividadNueva: "",
+    Tareas: [],
+  }),
+  methods: {
+    AgregarALista: function () {
+      this.Tareas.push(this.ActividadNueva);
+      this.ActividadNueva = "";
+    },
+    EliminardeLista: function () {
+      this.Tareas.splice(this.Tareas.indexOf(this.ActividadNueva), 1);
+      this.ActividadNueva = "";
+    },
   },
 };
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style lang="scss" scoped>
+html,
+body {
+  margin: 0;
+}
+#App {
+  background-color: cadetblue;
+  margin-left: 120px;
+  margin-right: 120px;
+  height: 570px;
+  border-radius: 3%;
+}
+
+h1 {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  font-size: 50px;
+  color: white;
+  padding-top: 50px;
+}
+
+input {
+  text-align: center;
+  margin-left: 390px;
+  width: 250px;
+  height: 25px;
+  font-size: 15px;
+}
+
+button {
+  text-align: center;
+  margin: 10px;
+  width: 100px;
+  height: 50px;
+  background-color: paleturquoise;
+  border-color: paleturquoise;
+  border-radius: 10%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
 }
 </style>
