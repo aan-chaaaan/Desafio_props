@@ -10,7 +10,7 @@
     <button @click="AgregarALista">Agregar!</button>
     <componente
       :Tareas="Tareas"
-      @EliminardeLista="EliminardeLista"
+      @eliminardeLista="eliminardeLista"
     ></componente>
   </div>
 </template>
@@ -30,9 +30,8 @@ export default {
       this.Tareas.push(this.ActividadNueva);
       this.ActividadNueva = "";
     },
-    EliminardeLista: function () {
-      this.Tareas.splice(this.Tareas.indexOf(this.ActividadNueva), 1);
-      this.ActividadNueva = "";
+    eliminardeLista: function (index) {
+      this.Tareas.splice(index, 1);
     },
   },
 };

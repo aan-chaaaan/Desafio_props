@@ -3,7 +3,7 @@
     <ul class="list">
       <li v-for="(Tarea, index) of Tareas" :key="index">
         {{ index }}. {{ Tarea }}
-        <button @click="$emit(`EliminardeLista`)">Eliminar :c</button>
+        <button @click="eliminardeLista(index)">Eliminar :c</button>
       </li>
     </ul>
   </div>
@@ -14,6 +14,11 @@ export default {
   props: {
     Tareas: {
       type: Array,
+    },
+  },
+  methods: {
+    eliminardeLista(index) {
+      this.$emit("eliminardeLista", index);
     },
   },
 };
@@ -35,8 +40,8 @@ button {
   border-radius: 10%;
 }
 
-li{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+li {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 30px;
   color: whitesmoke;
   font-weight: 600;
